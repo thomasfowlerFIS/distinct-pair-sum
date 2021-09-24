@@ -1,5 +1,28 @@
-function distinctPairSum(arr, k) {
-  // type your code here
+const distinctPairSum = (arr, k) => {
+  return arr.reduce((p, c, i, arr) => {
+    if (i > 0) {
+      const tempSum = c + arr[i - 1]
+      const pair = tempSum === k ? [arr[i - 1], c] : undefined
+      if (pair !== undefined) {
+        if (p.length === 0) {
+          p.push(pair)
+          return p
+        } else {
+          let doAdd = false
+          let dupeFound = false
+          p.forEach((val) => {
+            val.sort((a, b) => b - a)
+            doAdd = !(val.every((e, i) => e === pair[i]))
+            if (!dupeFound && !doAdd) {
+              dupeFound = true
+            }
+          })
+          if (doAdd && !dupeFound) p.push(pair)
+        }
+      }
+    }
+    return p
+  }, [])
 }
 
 if (require.main === module) {
