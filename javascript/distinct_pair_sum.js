@@ -8,8 +8,7 @@ const distinctPairSum = (arr, k) => {
           p.push(pair)
           return p
         } else {
-          let doAdd = false
-          let dupeFound = false
+          let doAdd, dupeFound = false
           p.forEach((val) => {
             val.sort((a, b) => b - a)
             doAdd = !(val.every((e, i) => e === pair[i]))
@@ -32,7 +31,7 @@ if (require.main === module) {
 
   console.log("");
 
-  console.log("Expecting: [[2, 8]]");
+  console.log("Expecting: [[8, 2]]");
   console.log("=>", distinctPairSum([3, 4, 2, 1, 5, 2, 8, 2], 10));
 }
 
